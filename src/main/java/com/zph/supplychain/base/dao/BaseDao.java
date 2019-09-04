@@ -9,7 +9,7 @@ import com.zph.supplychain.query.PageResult;
 
 public interface BaseDao<T> {
 	//分页的查询
-	public PageResult<T> findPageResult(BaseQuery baseQuery);
+	public PageResult<T> findPageResult(final BaseQuery baseQuery);
 	
 	//不分页的查询
 	public Collection<T> findEntry();
@@ -31,4 +31,7 @@ public interface BaseDao<T> {
 	
 	//根据ids提取一些数据
 	public Set<T> getEntriesByIds(Serializable[] ids);
+	
+	//查询某一张表的记录数
+	public int getCount(final BaseQuery baseQuery);
 }
