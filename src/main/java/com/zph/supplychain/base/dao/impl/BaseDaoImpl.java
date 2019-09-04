@@ -1,6 +1,7 @@
 package com.zph.supplychain.base.dao.impl;
 
 import java.io.Serializable;
+import java.lang.reflect.ParameterizedType;
 import java.sql.SQLException;
 import java.util.Collection;
 import java.util.Iterator;
@@ -21,9 +22,21 @@ import com.zph.supplychain.base.dao.BaseDao;
 import com.zph.supplychain.query.BaseQuery;
 import com.zph.supplychain.query.PageResult;
 
-@Repository("baseDao")
 public class BaseDaoImpl<T> implements BaseDao<T>{
-	
+	private final Class classt;
+	/*
+	 * 把泛型的参数提取出来的过程放入到构造函数中去
+	 * 因为当子类创建对象的时候，直接调用父类的构造函数
+	 * */
+	public BaseDaoImpl() {
+		/*
+		 * this代表之类
+		 * this.getClass().getGenericSuperclass()就是父类：BaseDaoImpl<T>泛型
+		 * */
+		ParameterizedType type = (ParameterizedType)this.getClass().getGenericSuperclass();
+		//得到T的实际类型
+		this.classt = (Class) type.getActualTypeArguments()[0];
+	}
 	@Resource(name="hibernateTemplate")
 	public HibernateTemplate hibernateTemplate;
 
@@ -72,7 +85,7 @@ public class BaseDaoImpl<T> implements BaseDao<T>{
 
 			public Integer doInHibernate(Session session) throws HibernateException, SQLException {
 				StringBuffer stringBuffer = new StringBuffer();
-				stringBuffer.append("select count(*) from Department");
+				stringBuffer.append("select count(*) from " + classt.getSimpleName());
 				stringBuffer.append(" where 1=1 ");
 				//获取所有的查询条件
 				Map<String, Object> keyValues = baseQuery.buildWhere();
