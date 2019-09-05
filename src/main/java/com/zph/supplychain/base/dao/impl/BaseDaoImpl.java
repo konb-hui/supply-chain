@@ -9,11 +9,13 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
 
+import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
 
 import org.hibernate.HibernateException;
 import org.hibernate.Query;
 import org.hibernate.Session;
+import org.hibernate.metadata.ClassMetadata;
 import org.springframework.orm.hibernate3.HibernateCallback;
 import org.springframework.orm.hibernate3.HibernateTemplate;
 import org.springframework.stereotype.Repository;
@@ -24,6 +26,7 @@ import com.zph.supplychain.query.PageResult;
 
 public class BaseDaoImpl<T> implements BaseDao<T>{
 	private final Class classt;
+	private ClassMetadata classMetadata;//元数据，描述持久化类的对象
 	/*
 	 * 把泛型的参数提取出来的过程放入到构造函数中去
 	 * 因为当子类创建对象的时候，直接调用父类的构造函数
@@ -39,7 +42,12 @@ public class BaseDaoImpl<T> implements BaseDao<T>{
 	}
 	@Resource(name="hibernateTemplate")
 	public HibernateTemplate hibernateTemplate;
-
+	
+	@PostConstruct
+	public void init() {//初始化方法
+		this.classMetadata = this.hibernateTemplate.getSessionFactory().getClassMetadata(this.classt);
+	}
+	
 	public PageResult<T> findPageResult(BaseQuery baseQuery) {
 		// TODO Auto-generated method stub
 		return null;
@@ -85,7 +93,7 @@ public class BaseDaoImpl<T> implements BaseDao<T>{
 
 			public Integer doInHibernate(Session session) throws HibernateException, SQLException {
 				StringBuffer stringBuffer = new StringBuffer();
-				stringBuffer.append("select count(*) from " + classt.getSimpleName());
+				stringBuffer.append("select count("+classMetadata.getIdentifierPropertyName()+") from " + classt.getSimpleName());
 				stringBuffer.append(" where 1=1 ");
 				//获取所有的查询条件
 				Map<String, Object> keyValues = baseQuery.buildWhere();
