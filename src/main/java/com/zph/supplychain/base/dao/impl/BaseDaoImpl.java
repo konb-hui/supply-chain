@@ -87,22 +87,37 @@ public class BaseDaoImpl<T> implements BaseDao<T>{
 
 	public Collection<T> findEntry() {
 		// TODO Auto-generated method stub
-		return null;
+		return this.hibernateTemplate.find("from " + this.classt.getSimpleName());
 	}
 
 	public void saveEntry(T t) {
 		// TODO Auto-generated method stub
-		
+		this.hibernateTemplate.save(t);
 	}
 
 	public void updateEntry(T t) {
 		// TODO Auto-generated method stub
-		
+		this.hibernateTemplate.update(t);
 	}
 
 	public void deleteEntriesByIds(Serializable[] ids) {
-		// TODO Auto-generated method stub
-		
+		// [1,2,3]-->1,2,3
+		StringBuffer stringBuffer = new StringBuffer();
+		for(int i = 0; i <ids.length;i++) {
+			if(i == ids.length - 1) {
+				stringBuffer.append(ids[i]);
+			}else {
+				stringBuffer.append(ids[i] + ",");
+			}
+		}
+		StringBuffer hql = new StringBuffer();
+		hql.append("from " + this.classt.getSimpleName());
+		hql.append(" where " + this.classMetadata.getIdentifierPropertyName());
+		hql.append(" in(");
+		hql.append(stringBuffer.toString());
+		hql.append(")");
+		List<T> list = this.hibernateTemplate.find(hql.toString());
+		this.hibernateTemplate.deleteAll(list);
 	}
 
 	public void deleteEntry(Serializable id) {
