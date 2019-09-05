@@ -5,6 +5,7 @@ import java.lang.reflect.ParameterizedType;
 import java.sql.SQLException;
 import java.util.Collection;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
@@ -48,9 +49,40 @@ public class BaseDaoImpl<T> implements BaseDao<T>{
 		this.classMetadata = this.hibernateTemplate.getSessionFactory().getClassMetadata(this.classt);
 	}
 	
-	public PageResult<T> findPageResult(BaseQuery baseQuery) {
-		// TODO Auto-generated method stub
-		return null;
+	public PageResult<T> findPageResult(final BaseQuery baseQuery) {
+		return this.hibernateTemplate.execute(new HibernateCallback<PageResult<T>>() {
+
+			public PageResult<T> doInHibernate(Session session) throws HibernateException, SQLException {
+				int totalSize = getCount(baseQuery);
+				PageResult<T> pageResult = new PageResult<T>(baseQuery.getCurrentPage(), baseQuery.getPageSize(), totalSize);
+				StringBuffer stringBuffer = new StringBuffer();
+				stringBuffer.append("from " + classt.getSimpleName());
+				stringBuffer.append(" where 1=1 ");
+				//在map中封装的查询条件
+				Map<String, Object> keyValues = baseQuery.buildWhere();
+				for(Entry<String, Object> entry : keyValues.entrySet()) {
+					stringBuffer.append(" and " + entry.getKey() + "=:" + entry.getKey());
+				}
+				//根据拼凑的hql语句产生一个Query对象
+				Query query = session.createQuery(stringBuffer.toString());
+				//给hql语句的参数赋值
+				for(Entry<String, Object> entry : keyValues.entrySet()) {
+					query.setParameter(entry.getKey(), entry.getValue());
+				}
+				//设置当前页的第一行在集合中的位置
+				int firstResult = (baseQuery.getCurrentPage() - 1) * baseQuery.getPageSize();
+				//设置每页显示最多的行数
+				int maxResults = baseQuery.getPageSize();
+				//用hibernate的方式设置分页
+				query.setFirstResult(firstResult).setMaxResults(maxResults);
+				//返回枫叶的结果集
+				List<T> rows = query.list();
+				//把结果是指到pageResult里
+				pageResult.setRows(rows);
+				return pageResult;
+			}
+			
+		});
 	}
 
 	public Collection<T> findEntry() {
