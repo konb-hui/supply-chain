@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.lang.reflect.ParameterizedType;
 import java.sql.SQLException;
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -122,17 +123,35 @@ public class BaseDaoImpl<T> implements BaseDao<T>{
 
 	public void deleteEntry(Serializable id) {
 		// TODO Auto-generated method stub
-		
+		T t = (T) this.hibernateTemplate.get(this.classt, id);
+		this.hibernateTemplate.delete(t);
 	}
 
 	public T getEntry(Serializable id) {
 		// TODO Auto-generated method stub
-		return null;
+		return (T) this.hibernateTemplate.get(this.classt, id);
 	}
 
 	public Set<T> getEntriesByIds(Serializable[] ids) {
 		// TODO Auto-generated method stub
-		return null;
+		// [1,2,3]-->1,2,3
+		StringBuffer stringBuffer = new StringBuffer();
+		for(int i = 0; i <ids.length;i++) {
+			if(i == ids.length - 1) {
+				stringBuffer.append(ids[i]);
+			}else {
+				stringBuffer.append(ids[i] + ",");
+			}
+		}
+		StringBuffer hql = new StringBuffer();
+		hql.append("from " + this.classt.getSimpleName());
+		hql.append(" where " + this.classMetadata.getIdentifierPropertyName());
+		hql.append(" in(");
+		hql.append(stringBuffer.toString());
+		hql.append(")");
+		List<T> list = this.hibernateTemplate.find(hql.toString());
+		this.hibernateTemplate.deleteAll(list);
+		return new HashSet<T>(list);//从list到set的转化
 	}
 
 	public int getCount(final BaseQuery baseQuery) {
