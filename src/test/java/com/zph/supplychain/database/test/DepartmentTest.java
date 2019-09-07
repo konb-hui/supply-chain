@@ -2,6 +2,7 @@ package com.zph.supplychain.database.test;
 
 import org.junit.Test;
 
+import com.zph.supplychain.basedata.action.DepartmentAction;
 import com.zph.supplychain.basedata.dao.DepartmentDao;
 import com.zph.supplychain.basedata.service.DepartmentService;
 import com.zph.supplychain.domain.basedata.Department;
@@ -34,5 +35,10 @@ public class DepartmentTest extends SpringUtils{
 		department.setName("销售部");
 		department.setDescription("公司命脉");
 		departmentService.saveEntry(department);
+	}
+	
+	@Test
+	public void testAction() {
+		DepartmentAction departmentAction = (DepartmentAction) context.getBean("departmentAction");
 	}
 }
