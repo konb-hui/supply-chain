@@ -28,6 +28,16 @@ public class BaseAction<T> extends ActionSupport implements ModelDriven<T>{
 		// TODO Auto-generated method stub
 		return this.t;
 	}
+	
+	private String checkedStr;
+	
+	public String getCheckedStr() {
+		return checkedStr;
+	}
+
+	public void setCheckedStr(String checkedStr) {
+		this.checkedStr = checkedStr;
+	}
 
 	public static final String ADDUI = "addUI";//跳转到增加页面的字符串
 	public String addUI = ADDUI;

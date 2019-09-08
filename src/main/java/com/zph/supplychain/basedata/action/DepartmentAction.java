@@ -33,7 +33,13 @@ public class DepartmentAction extends BaseAction<Department>{
 		baseQuery.setCurrentPage(currentPage);
 		PageResult<Department> departments = this.departmentService.findPageResult(baseQuery);
 		ActionContext.getContext().put("departments", departments);
-		return "listAction";
+		return listAction;
+	}
+	
+	public String deleteDepartement() {
+		String[] ids = this.getCheckedStr().split(",");
+		this.departmentService.deleteEntriesByids(ids);
+		return action2action;
 	}
 	
 }

@@ -4,6 +4,17 @@ var SupplyChainUtils = {
 	 */
 	basedata:{
 		/**
+		 *基础数据模块的查询页面的删除功能的处理 
+		 */
+		deleteObj:{
+			/**
+			 *当页面上的复选框被选中以后 ，点击删除按钮要做的事
+			 */
+			deleteFunction:function(config){
+				$.deleteObj(config);
+			}
+		},
+		/**
 		 * 分页的逻辑
 		 */
 		dispage:{
