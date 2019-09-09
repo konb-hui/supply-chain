@@ -18,6 +18,10 @@
 			url:'departmentAction_deleteDepartement.action'
 		}); */
 		$.deleteObjForm();
+		SupplyChainUtils.basedata.updateObj.updateFunction({
+			url:'departmentAction_updateUI.action',
+			id:'did'
+		});
 	});
 </script>
 </head>

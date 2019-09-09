@@ -8,6 +8,8 @@
 		<action name="departmentAction_*" method="{1}" class="departmentAction">
 			<result name="listAction">WEB-INF/jsp/supplychain/basedata/department/list.jsp</result>
 			<result name="action2action" type="redirectAction">departmentAction_showPageResult.action</result>
+			<result name="addUI">WEB-INF/jsp/supplychain/basedata/department/add.jsp</result>
+			<result name="updateUI">WEB-INF/jsp/supplychain/basedata/department/update.jsp</result>
 		</action>
 	</package>
 </struts>

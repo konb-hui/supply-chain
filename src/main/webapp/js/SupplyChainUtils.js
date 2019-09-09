@@ -15,6 +15,14 @@ var SupplyChainUtils = {
 			}
 		},
 		/**
+		 * 修改的逻辑
+		 */
+		updateObj:{
+			updateFunction:function(config){
+				$.updateEvent(config);
+			}
+		},
+		/**
 		 * 分页的逻辑
 		 */
 		dispage:{

@@ -2,6 +2,7 @@ package com.zph.supplychain.basedata.action;
 
 import javax.annotation.Resource;
 
+import org.springframework.beans.BeanUtils;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
@@ -42,4 +43,26 @@ public class DepartmentAction extends BaseAction<Department>{
 		return action2action;
 	}
 	
+	public String addUI() {
+		return addUI;
+	}
+	
+	public String add() {
+		Department department = new Department();
+		BeanUtils.copyProperties(this.getModel(), department);
+		this.departmentService.saveEntry(department);
+		return action2action;
+	}
+	
+	public String updateUI() {
+		Department department = this.departmentService.getEntry(this.getModel().getDid());
+		ActionContext.getContext().getValueStack().push(department);
+		return updateUI;
+	}
+	public String update() {
+		Department department = this.departmentService.getEntry(this.getModel().getDid());
+		BeanUtils.copyProperties(this.getModel(), department);
+		this.departmentService.updateEntry(department);
+		return action2action;
+	}
 }
