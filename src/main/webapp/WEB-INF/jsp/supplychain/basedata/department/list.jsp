@@ -11,23 +11,26 @@
 		//声明分页的事件
 		SupplyChainUtils.basedata.initEvent();
 		//声明删除的事件
-		SupplyChainUtils.basedata.deleteObj.deleteFunction({
+/* 		SupplyChainUtils.basedata.deleteObj.deleteFunction({
 			id:'deleteSome',
-			checkboxname:'dids',
+			checkboxname:'ids',
 			controlCheckBox:'controlCheckbox',
 			url:'departmentAction_deleteDepartement.action'
-		});
+		}); */
+		$.deleteObjForm();
 	});
 </script>
 </head>
 <body>
+<form action="departmentAction_deleteDepartement.action">
 <table id="userwrap">
 	
 	<tr class="user">
         <td class="right">
         	<table cellspacing="0" cellpadding="0" id="maintain-top" align="center"  width="900" style=" overflow:auto; height:40px;">
                 <tr class="one" height="20">
-                	<td class="btn" align="left"><input type="button" value="删除" id="deleteSome"/></td>
+                	<td class="btn" align="left"><!-- <input type="button" value="删除" id="deleteSome"/> -->
+                	<input type="submit" value="删除" id="deleteSome"/></td>
                 </tr>
                 <tr class="one" height="20">
                 	<td><input type="checkbox" id="controlCheckbox"/></td>
@@ -37,7 +40,7 @@
                 </tr>
                	<s:iterator value="#departments.rows">
 	                <tr align="center">
-	                   <td><input type="checkbox" name="dids" value="${did}"/></td>
+	                   <td><input type="checkbox" name="ids" value="${did}"/></td>
 	                   <td><s:property value="name"/></td>
 	                   <td><s:property value="description"/></td>
 					   <td class="btn" align="center">
@@ -54,6 +57,7 @@
         </td>
     </tr>
 </table>
+</form>
 <div>
     <a href="departmentAction_addUI.action"><img src="${pageContext.request.contextPath}/images/createNew.png" /></a>
 </div>

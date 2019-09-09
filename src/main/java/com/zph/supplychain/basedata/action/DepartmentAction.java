@@ -37,8 +37,8 @@ public class DepartmentAction extends BaseAction<Department>{
 	}
 	
 	public String deleteDepartement() {
-		String[] ids = this.getCheckedStr().split(",");
-		this.departmentService.deleteEntriesByids(ids);
+		//String[] ids = this.getCheckedStr().split(",");
+		this.departmentService.deleteEntriesByids(this.getIds());
 		return action2action;
 	}
 	

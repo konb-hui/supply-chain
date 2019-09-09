@@ -28,7 +28,7 @@ public class BaseAction<T> extends ActionSupport implements ModelDriven<T>{
 		// TODO Auto-generated method stub
 		return this.t;
 	}
-	
+	//button方式传递字符串
 	private String checkedStr;
 	
 	public String getCheckedStr() {
@@ -38,7 +38,16 @@ public class BaseAction<T> extends ActionSupport implements ModelDriven<T>{
 	public void setCheckedStr(String checkedStr) {
 		this.checkedStr = checkedStr;
 	}
+	//submit方式传递数组
+	private Long[] ids;
+	
+	public Long[] getIds() {
+		return ids;
+	}
 
+	public void setIds(Long[] ids) {
+		this.ids = ids;
+	}
 	public static final String ADDUI = "addUI";//跳转到增加页面的字符串
 	public String addUI = ADDUI;
 	

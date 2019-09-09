@@ -60,4 +60,14 @@
 			 }
 		 });
 	}
+	$.deleteObjForm = function(){
+		$("input[type='submit']").unbind("click");
+		$("input[type='submit']").bind("click",function(){
+			if(window.confirm("您确认要删除吗?")){
+				return true;
+			}else{
+				return false;//如果返回的是false,则表单不提交
+			}
+		});
+	}
 })(jQuery);
