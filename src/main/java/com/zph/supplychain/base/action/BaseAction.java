@@ -48,6 +48,15 @@ public class BaseAction<T> extends ActionSupport implements ModelDriven<T>{
 	public void setIds(Long[] ids) {
 		this.ids = ids;
 	}
+	private int currentPage;
+	
+	public int getCurrentPage() {
+		return currentPage;
+	}
+
+	public void setCurrentPage(int currentPage) {
+		this.currentPage = currentPage;
+	}
 	public static final String ADDUI = "addUI";//跳转到增加页面的字符串
 	public String addUI = ADDUI;
 	

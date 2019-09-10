@@ -10,5 +10,6 @@
 		基础数据
 	 -->
 	<include file="com/zph/supplychain/struts/basedata/struts-department.xml"></include>
+	<include file="com/zph/supplychain/struts/basedata/struts-user.xml"></include>
 </struts>
 	

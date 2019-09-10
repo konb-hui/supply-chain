@@ -20,18 +20,9 @@ public class DepartmentAction extends BaseAction<Department>{
 	@Resource(name="departmentService")
 	private DepartmentService departmentService;
 	private DepartmentQuery baseQuery = new DepartmentQuery();
-	private int currentPage;
-	
-	public int getCurrentPage() {
-		return currentPage;
-	}
-
-	public void setCurrentPage(int currentPage) {
-		this.currentPage = currentPage;
-	}
 
 	public String showPageResult() {
-		baseQuery.setCurrentPage(currentPage);
+		baseQuery.setCurrentPage(this.getCurrentPage());
 		PageResult<Department> departments = this.departmentService.findPageResult(baseQuery);
 		ActionContext.getContext().put("departments", departments);
 		return listAction;
