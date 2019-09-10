@@ -12,7 +12,14 @@ var SupplyChainUtils = {
 			 */
 			deleteFunction:function(config){
 				$.deleteObj(config);
+			},
+			/**
+			 * 当页面的单项删除被选中后要做的事
+			 */
+			deleteOneFunction:function(config){
+				$.deleteOne(config);
 			}
+			
 		},
 		/**
 		 * 修改的逻辑

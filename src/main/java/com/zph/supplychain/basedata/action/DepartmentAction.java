@@ -65,4 +65,9 @@ public class DepartmentAction extends BaseAction<Department>{
 		this.departmentService.updateEntry(department);
 		return action2action;
 	}
+	
+	public String deleteOne() {
+		this.departmentService.deleteEntryById(this.getModel().getDid());
+		return action2action;
+	}
 }

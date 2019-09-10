@@ -22,6 +22,10 @@
 			url:'departmentAction_updateUI.action',
 			id:'did'
 		});
+		SupplyChainUtils.basedata.deleteObj.deleteOneFunction({
+			url:'departmentAction_deleteOne.action',
+			id:'did'
+		})
 	});
 </script>
 </head>

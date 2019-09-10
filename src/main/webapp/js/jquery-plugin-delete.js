@@ -70,4 +70,20 @@
 			}
 		});
 	}
+	$.deleteOne = function(config){
+		$("input[value='删除'][type='button']").unbind("click");
+		$("input[value='删除'][type='button']").bind("click",function(){
+			if(window.confirm("您确认要删除吗?")){
+				/**
+				 * 获取id
+				 */
+				var id = $(this).parent().siblings("td:first").children("input").attr("value");
+				window.location.href = config.url+"?"+config.id+"="+id;
+				return true;
+			}else{
+				return false;//如果返回的是false,则表单不提交
+			}
+		});
+	}
+	
 })(jQuery);
