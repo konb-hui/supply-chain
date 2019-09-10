@@ -1,6 +1,7 @@
 package com.zph.supplychain.base.service.impl;
 
 import java.io.Serializable;
+import java.util.Collection;
 
 import org.springframework.transaction.annotation.Transactional;
 
@@ -47,4 +48,7 @@ public abstract class BaseServiceImpl<T> implements BaseService<T>{
 		return (T) this.getbaseDao().getEntry(id);
 	}
 	
+	public Collection<T> getEntries(){
+		return this.getbaseDao().findEntry();
+	}
 }

@@ -20,11 +20,11 @@
 		$.deleteObjForm();
 		SupplyChainUtils.basedata.updateObj.updateFunction({
 			url:'userAction_updateUI.action',
-			id:'did'
+			id:'uid'
 		});
 		SupplyChainUtils.basedata.deleteObj.deleteOneFunction({
 			url:'userAction_deleteOne.action',
-			id:'did'
+			id:'uid'
 		})
 	});
 </script>
@@ -46,7 +46,8 @@
                     <td width="300">email</td>
                     <td width="300">phone</td>
                     <td width="300">性别</td>
-					<td width="300">操作</td>
+                    <td width="300">部门</td>
+					<td width="400">操作</td>
                 </tr>
                	<s:iterator value="#users.rows">
 	                <tr align="center">
@@ -55,6 +56,7 @@
 	                   <td><s:property value="email"/></td>
 	                   <td><s:property value="phone"/></td>
 	                   <td><s:property value="sex"/></td>
+	                   <td><s:property value="department.name"/></td>
 					   <td class="btn" align="center">
 					   	<input type="button" value="修改"/>
 					    <input type="button" value="删除"/>
