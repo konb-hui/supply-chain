@@ -46,12 +46,11 @@
                     <td width="300">email</td>
                     <td width="300">phone</td>
                     <td width="300">性别</td>
-                    <td width="300">描述</td>
 					<td width="300">操作</td>
                 </tr>
-               	<s:iterator value="#departments.rows">
+               	<s:iterator value="#users.rows">
 	                <tr align="center">
-	                   <td><input type="checkbox" name="ids" value="${did}"/></td>
+	                   <td><input type="checkbox" name="ids" value="${uid}"/></td>
 	                   <td><s:property value="username"/></td>
 	                   <td><s:property value="email"/></td>
 	                   <td><s:property value="phone"/></td>

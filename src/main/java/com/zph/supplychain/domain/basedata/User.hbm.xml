@@ -29,7 +29,7 @@
 		<property name="password" length="8"></property>
 		<property name="phone" length="11"></property>
 		<property name="sex" length="10"></property>
-		<property name="uername" length="20"></property>
+		<property name="username" length="20"></property>
 		
 		<many-to-one name="department" column="did" class="com.zph.supplychain.domain.basedata.Department"></many-to-one>
 	</class>
