@@ -13,7 +13,7 @@ import com.zph.supplychain.domain.privilege.Menuitem;
 public class MenuitemTest {
 	@Test
 	public void testAddMenuitem(){
-		ApplicationContext context = new ClassPathXmlApplicationContext("com/itheima11/gyl/spring/applicationContext.xml");
+		ApplicationContext context = new ClassPathXmlApplicationContext("com/zph/supplychain/spring/applicationContext.xml");
 		SessionFactory sessionFactory = (SessionFactory)context.getBean("sessionFactory");
 		Session session = sessionFactory.openSession();
 		Transaction transaction = session.beginTransaction();
