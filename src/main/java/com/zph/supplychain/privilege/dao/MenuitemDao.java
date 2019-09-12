@@ -1,4 +1,4 @@
-package com.zph.supplychain.domain.privilege.dao;
+package com.zph.supplychain.privilege.dao;
 
 import com.zph.supplychain.base.dao.BaseDao;
 import com.zph.supplychain.domain.privilege.Menuitem;

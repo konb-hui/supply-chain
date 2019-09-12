@@ -1,4 +1,4 @@
-package com.zph.supplychain.domain.privilege.action;
+package com.zph.supplychain.privilege.action;
 
 import java.util.Collection;
 
@@ -10,7 +10,7 @@ import org.springframework.stereotype.Controller;
 import com.opensymphony.xwork2.ActionContext;
 import com.zph.supplychain.base.action.BaseAction;
 import com.zph.supplychain.domain.privilege.Menuitem;
-import com.zph.supplychain.domain.privilege.service.MenuitemService;
+import com.zph.supplychain.privilege.service.MenuitemService;
 
 @Controller("menuitemAction")
 @Scope("prototype")

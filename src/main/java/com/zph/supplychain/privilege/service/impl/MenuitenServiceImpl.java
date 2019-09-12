@@ -1,5 +1,4 @@
-package com.zph.supplychain.domain.privilege.service.impl;
-
+package com.zph.supplychain.privilege.service.impl;
 
 import javax.annotation.Resource;
 
@@ -8,11 +7,11 @@ import org.springframework.stereotype.Repository;
 import com.zph.supplychain.base.dao.BaseDao;
 import com.zph.supplychain.base.service.impl.BaseServiceImpl;
 import com.zph.supplychain.domain.privilege.Menuitem;
-import com.zph.supplychain.domain.privilege.dao.MenuitemDao;
-import com.zph.supplychain.domain.privilege.service.MenuitemService;
+import com.zph.supplychain.privilege.dao.MenuitemDao;
+import com.zph.supplychain.privilege.service.MenuitemService;
 
 @Repository("menuitemService")
-public class MenuitemServiceImpl extends BaseServiceImpl<Menuitem> implements MenuitemService{
+public class MenuitenServiceImpl extends BaseServiceImpl<Menuitem> implements MenuitemService{
 	
 	@Resource(name="menuitemDao")
 	private MenuitemDao menuitemDao;
