@@ -11,5 +11,10 @@
 	 -->
 	<include file="com/zph/supplychain/struts/basedata/struts-department.xml"></include>
 	<include file="com/zph/supplychain/struts/basedata/struts-user.xml"></include>
+	
+	<!-- 
+		权限模块
+	 -->
+	 <include file="com/zph/supplychain/struts/privilege/struts-privilege.xml"></include>
 </struts>
 	
