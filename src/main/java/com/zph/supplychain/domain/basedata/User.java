@@ -1,6 +1,9 @@
 package com.zph.supplychain.domain.basedata;
 
 import java.io.Serializable;
+import java.util.Set;
+
+import com.zph.supplychain.domain.privilege.Role;
 
 public class User implements Serializable{
 	private Long uid;
@@ -10,6 +13,13 @@ public class User implements Serializable{
 	private String email;
 	private String sex;
 	private Department department;
+	private Set<Role> roles;
+	public Set<Role> getRoles() {
+		return roles;
+	}
+	public void setRoles(Set<Role> roles) {
+		this.roles = roles;
+	}
 	public Long getUid() {
 		return uid;
 	}

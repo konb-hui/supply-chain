@@ -32,5 +32,12 @@
 		<property name="username" length="20"></property>
 		
 		<many-to-one name="department" column="did" class="com.zph.supplychain.domain.basedata.Department"></many-to-one>
+		
+		<set name="roles" table="user_role">
+			<key>
+				<column name="uid"></column>
+			</key>
+			<many-to-many class="com.zph.supplychain.domain.privilege.Role" column="rid"></many-to-many>
+		</set>
 	</class>
 </hibernate-mapping>
