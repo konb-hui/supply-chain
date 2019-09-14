@@ -1,0 +1,20 @@
+var roletree = {
+		setting:{
+			isSimpleData:true,
+			treeNodeKey:"rid",
+			treeNodeParentKey:"pid",
+			showLine:"true",
+			root:{
+				isRoot:true,
+				nodes:{}
+			}
+		},
+		loadRoleTree:function(){
+			$.post("roleAction_showRoleTree.action",null,function(data){
+				$("#roleTree").zTree(roletree.setting,data);
+			});
+		}
+};
+$().ready(function(){
+	roletree.loadRoleTree();
+})

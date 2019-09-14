@@ -17,5 +17,10 @@
 	 -->
 	 <include file="com/zph/supplychain/struts/privilege/struts-menuitem.xml"></include>
 	 <include file="com/zph/supplychain/struts/privilege/struts-role.xml"></include>
+	 
+	 <!-- 
+	 	跳转
+	  -->
+	  <include file="com/zph/supplychain/struts/forward/struts-forward.xml"></include>
 </struts>
 	
