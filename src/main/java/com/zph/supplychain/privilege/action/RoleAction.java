@@ -4,6 +4,7 @@ import java.util.Collection;
 
 import javax.annotation.Resource;
 
+import org.springframework.beans.BeanUtils;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
@@ -22,6 +23,17 @@ public class RoleAction extends BaseAction<Role>{
 	public String showRoleTree() {
 		Collection<Role> roles = this.roleService.getEntries();
 		ActionContext.getContext().getValueStack().push(roles);
+		return SUCCESS;
+	}
+	
+	public String add() {
+		Role role = new Role();
+		BeanUtils.copyProperties(this.getModel(), role);
+		this.roleService.saveEntry(role);
+		/**
+		 *把Role回调到客户端，因为客户端用使用rid 
+		 */
+		ActionContext.getContext().getValueStack().push(role);
 		return SUCCESS;
 	}
 	
