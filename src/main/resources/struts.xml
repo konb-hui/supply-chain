@@ -15,6 +15,7 @@
 	<!-- 
 		权限模块
 	 -->
-	 <include file="com/zph/supplychain/struts/privilege/struts-privilege.xml"></include>
+	 <include file="com/zph/supplychain/struts/privilege/struts-menuitem.xml"></include>
+	 <include file="com/zph/supplychain/struts/privilege/struts-role.xml"></include>
 </struts>
 	
