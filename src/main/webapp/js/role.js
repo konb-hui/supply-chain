@@ -33,23 +33,37 @@ var roletree = {
 		addRole:function(){
 			var roleName = window.prompt("请输入角色的名称");
 			if(roleName){
-				var parameter = {
-						name:roleName,
-						pid:roletree.data.treeNode.rid,//所增加的父节点就是当前点击的节点
-						isParent:false
-				};
-				$.post("roleAction_add.action",parameter,function(data){
-					var newNode = {
-							rid:data.rid,
-							name:roleName,
-							pid:roletree.data.treeNode.rid,
-							isParent:false
-					};
-					/**
-					 *roletree.data.zTreePlugin是zTree函数运行后的返回值 
-					 */
-					roletree.data.zTreePlugin.addNodes(roletree.data.treeNode,newNode,true)
+				/**
+				 *在增加角色前线判断角色是否可用 
+				 */
+				$.post("roleAction_showRoleByName",{
+					name:roleName
+				},function(data){
+					if(data=="1"){//可用
+						
+						var parameter = {
+								name:roleName,
+								pid:roletree.data.treeNode.rid,//所增加的父节点就是当前点击的节点
+								isParent:false
+						};
+						$.post("roleAction_add.action",parameter,function(data1){
+							var newNode = {
+									rid:data1.rid,
+									name:roleName,
+									pid:roletree.data.treeNode.rid,
+									isParent:false
+							};
+							/**
+							 *roletree.data.zTreePlugin是zTree函数运行后的返回值 
+							 */
+							roletree.data.zTreePlugin.addNodes(roletree.data.treeNode,newNode,true)
+						});
+					}
+					else{
+						alert("该角色已经存在！");
+					}
 				});
+
 			}
 		},
 		/**

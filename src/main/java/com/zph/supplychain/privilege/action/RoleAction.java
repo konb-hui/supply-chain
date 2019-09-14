@@ -12,6 +12,7 @@ import com.opensymphony.xwork2.ActionContext;
 import com.zph.supplychain.base.action.BaseAction;
 import com.zph.supplychain.domain.privilege.Role;
 import com.zph.supplychain.privilege.service.RoleService;
+import com.zph.supplychain.utils.SupplyChainKey;
 
 @Controller("roleAction")
 @Scope("prototype")
@@ -37,4 +38,13 @@ public class RoleAction extends BaseAction<Role>{
 		return SUCCESS;
 	}
 	
+	public String showRoleByName() {
+		Role role = this.roleService.getRoleByName(this.getModel().getName());
+		if(role==null) {
+			ActionContext.getContext().getValueStack().push(SupplyChainKey.ROLE_NAME_FLAG_ABLE);//名字可用，将标志传到客户端
+		}else {
+			ActionContext.getContext().getValueStack().push(SupplyChainKey.ROLE_NAME_FLAG_DISABLE);//名字不可用，将标志传到客户端
+		}
+		return SUCCESS;
+	}
 }

@@ -22,4 +22,9 @@ public class RoleServiceImpl extends BaseServiceImpl<Role> implements RoleServic
 		return this.roleDao;
 	}
 
+	public Role getRoleByName(String name) {
+		// TODO Auto-generated method stub
+		return this.roleDao.getRoleByName(name);
+	}
+
 }

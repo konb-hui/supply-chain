@@ -3,6 +3,7 @@ package com.zph.supplychain.privilege.test;
 import org.junit.Test;
 
 import com.zph.supplychain.domain.privilege.Role;
+import com.zph.supplychain.privilege.dao.RoleDao;
 import com.zph.supplychain.privilege.service.RoleService;
 import com.zph.supplychain.test.utils.SpringUtils;
 
@@ -15,5 +16,11 @@ public class RoleTest extends SpringUtils{
 		role.setName("CEO");
 		role.setPid(0L);
 		roleService.saveEntry(role);
+	}
+	
+	@Test
+	public void testShowRoleByName() {
+		RoleDao roleDao = (RoleDao)this.context.getBean("roleDao");
+		System.out.println(roleDao.getRoleByName("asd"));
 	}
 }
