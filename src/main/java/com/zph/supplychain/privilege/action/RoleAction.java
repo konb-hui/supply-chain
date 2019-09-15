@@ -47,4 +47,9 @@ public class RoleAction extends BaseAction<Role>{
 		}
 		return SUCCESS;
 	}
+	
+	public String deleteRole() {
+		this.roleService.deleteEntryById(this.getModel().getRid());
+		return SUCCESS;
+	}
 }

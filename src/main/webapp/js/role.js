@@ -67,6 +67,22 @@ var roletree = {
 			}
 		},
 		/**
+		 *删除角色 
+		 */
+		deleteRole:function(){
+			/**
+			 *1.把后台数据库中相应的表的数据删除掉 
+			 *2.把前台的树上的节点删除
+			 */
+			if(window.confirm("您确认要删除吗？")){
+				$.post("roleAction_deleteRole.action",{
+					rid:roletree.data.treeNode.rid
+				},function(data){
+					roletree.data.zTreePlugin.removeNode(roletree.data.treeNode);
+				});
+			}
+		},
+		/**
 		 * 显示右键菜单 
 		 */
 		showRMenu:function(x,y){
@@ -97,7 +113,7 @@ var roletree = {
 				 */
 				$("#deleteRole").unbind("click");
 				$("#deleteRole").bind("click",function(){
-					
+					roletree.deleteRole();
 				});
 			}
 		}
