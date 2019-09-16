@@ -83,6 +83,27 @@ var roletree = {
 			}
 		},
 		/**
+		 *修改 
+		 */
+		updateRole:function(){
+			var roleName = window.prompt("请输入修改的名称",roletree.data.treeNode.name);
+			if(roletree.data.zTreePlugin.getNodeByParam("name",roleName)){//如果得到的对象在，则为true
+				alert("该名称已经存在了");
+			}else{//如果的到的对象不存在，则为false
+				$.post("roleAction_updateRole.action",{
+					rid:roletree.data.treeNode.rid,
+					name:roleName
+				},function(data){
+					//获取当前点击的节点
+					var node = roletree.data.zTreePlugin.getNodeByParam("rid",roletree.data.treeNode.rid);
+					//修改其name属性
+					node.name = roleName;
+					//更新zTree
+					roletree.data.zTreePlugin.refresh();
+				});
+			}
+		},
+		/**
 		 * 显示右键菜单 
 		 */
 		showRMenu:function(x,y){
@@ -106,7 +127,7 @@ var roletree = {
 				 */
 				$("#updateRole").unbind("click");
 				$("#updateRole").bind("click",function(){
-					
+					roletree.updateRole();
 				});
 				/**
 				 *删除角色事件 

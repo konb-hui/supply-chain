@@ -52,4 +52,11 @@ public class RoleAction extends BaseAction<Role>{
 		this.roleService.deleteEntryById(this.getModel().getRid());
 		return SUCCESS;
 	}
+	
+	public String updateRole() {
+		Role role = this.roleService.getEntry(this.getModel().getRid());
+		role.setName(this.getModel().getName());
+		this.roleService.updateEntry(role);
+		return SUCCESS;
+	}
 }
