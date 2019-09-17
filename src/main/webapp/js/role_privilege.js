@@ -1,0 +1,45 @@
+var role_privilege = {
+		/**
+		 *数据 
+		 */
+		data:{
+			role:{
+				name:'',
+				rid:''
+			},
+			checkedStr:''//被选中的权限树上的复选框的id的值
+		},
+		/**
+		 *存放操作 
+		 */
+		opt:{
+			
+		},
+		/**
+		 *初始化 
+		 */
+		init:{
+			//初始化数据
+			initData:function(){
+				
+			},
+			//初始化事件
+			initEvent:function(){
+				/**
+				 *给设置权限添加click事件 
+				 */
+				$("a").each(function(){
+					if($(this).text()=="设置权限"){
+						$(this).css("cursor","pointer");
+						$(this).unbind("click");
+						$(this).bind("click",function(){
+							alert("aaaa");
+						})
+					}
+				});
+			}
+		}
+};
+$().ready(function(){
+	role_privilege.init.initEvent();
+});

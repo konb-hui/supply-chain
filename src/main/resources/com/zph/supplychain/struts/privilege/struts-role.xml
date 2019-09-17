@@ -9,4 +9,9 @@
 			<result type="json"></result>
 		</action>
 	</package>
+		<package name="role_privilege" namespace="/" extends="struts-default">
+		<action name="rolePrivilegeAction_*" method="{1}" class="roleAction">
+			<result name="listAction">WEB-INF/jsp/supplychain/privilege/role_privilege.jsp</result>
+		</action>
+	</package>
 </struts>

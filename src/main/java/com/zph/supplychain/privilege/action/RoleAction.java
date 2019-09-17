@@ -59,4 +59,12 @@ public class RoleAction extends BaseAction<Role>{
 		this.roleService.updateEntry(role);
 		return SUCCESS;
 	}
+	/**
+	 * 在权限设置模块，显示角色的名称 
+	 */
+	public String showRoles() {
+		Collection<Role> roles = this.roleService.getEntries();
+		ActionContext.getContext().put("roles", roles);
+		return listAction;
+	}
 }
