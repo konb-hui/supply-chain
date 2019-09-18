@@ -13,7 +13,24 @@ var role_privilege = {
 		 *存放操作 
 		 */
 		opt:{
-			
+			/**
+			 *关于div的操作 
+			 */
+			divOpt:{
+				//显示被隐藏的的div
+				showDiv:function(){
+					$("div:hidden").show();
+				}
+			},
+			/**
+			 *关于角色的操作 
+			 */
+			roleOpt:{
+				
+			},
+			roleTree:{
+				
+			}
 		},
 		/**
 		 *初始化 
@@ -33,7 +50,12 @@ var role_privilege = {
 						$(this).css("cursor","pointer");
 						$(this).unbind("click");
 						$(this).bind("click",function(){
-							alert("aaaa");
+							/**
+							 *1.显示隐藏的div 
+							 * 2.加载权限树
+							 *3.对角色原来的有的权限进行回显
+							 */
+							role_privilege.opt.divOpt.showDiv();
 						})
 					}
 				});

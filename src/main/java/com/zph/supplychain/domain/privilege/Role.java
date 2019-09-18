@@ -11,6 +11,13 @@ public class Role implements Serializable{
 	private String name;
 	private Boolean isParent;//是否为父节点
 	private Set<User> users;
+	private Set<Privilege> privileges;
+	public Set<Privilege> getPrivileges() {
+		return privileges;
+	}
+	public void setPrivileges(Set<Privilege> privileges) {
+		this.privileges = privileges;
+	}
 	public Long getRid() {
 		return rid;
 	}
