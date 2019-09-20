@@ -78,7 +78,7 @@
 						<tr class="TableDetail1">
 							<!-- 显示权限树 -->
 							<td>
-								<img id="loading" alt="" src="images/loading.gif">
+
 								<ul id='privilegeTree' class="tree">
 							</td>
 						</tr>

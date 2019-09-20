@@ -30,8 +30,25 @@ var role_privilege = {
 					$("#roleImage").text("角色："+role_privilege.data.role.name)
 				}
 			},
-			roleTree:{
-				
+			/**
+			 *权限树 
+			 */
+			privilegeTree:{
+				setting:{
+					isSimpleData:true,
+					treeNodeKey:"id",
+					treeNodeParentKey:"pid",
+					showLine:"true",
+					root:{
+						isRoot:true,
+						nodes:{}
+					}
+				},
+				loadPrivilegeTree:function(){
+					$.post("privilegeAction_showPrivilegeTree.action",null,function(data){
+						$("#privilegeTree").zTree(role_privilege.opt.privilegeTree.setting,data);
+					});
+				}
 			}
 		},
 		/**
@@ -65,6 +82,8 @@ var role_privilege = {
 							role_privilege.init.initData.call(this);
 							//动态显示角色名称
 							role_privilege.opt.roleOpt.showRoleName();
+							//加载权限树
+							role_privilege.opt.privilegeTree.loadPrivilegeTree();
 						})
 					}
 				});
