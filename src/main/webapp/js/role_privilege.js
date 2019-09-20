@@ -26,7 +26,9 @@ var role_privilege = {
 			 *关于角色的操作 
 			 */
 			roleOpt:{
-				
+				showRoleName:function(){
+					$("#roleImage").text("角色："+role_privilege.data.role.name)
+				}
 			},
 			roleTree:{
 				
@@ -38,7 +40,10 @@ var role_privilege = {
 		init:{
 			//初始化数据
 			initData:function(){
-				
+				var name = $(this).parent().siblings("td:first").text();
+				var rid = $(this).parent().siblings("input[type='hidden']").attr("value");
+				role_privilege.data.role.name=name;
+				role_privilege.data.role.rid=rid;
 			},
 			//初始化事件
 			initEvent:function(){
@@ -56,6 +61,10 @@ var role_privilege = {
 							 *3.对角色原来的有的权限进行回显
 							 */
 							role_privilege.opt.divOpt.showDiv();
+							//调用initData给Role的rid和name赋值
+							role_privilege.init.initData.call(this);
+							//动态显示角色名称
+							role_privilege.opt.roleOpt.showRoleName();
 						})
 					}
 				});
