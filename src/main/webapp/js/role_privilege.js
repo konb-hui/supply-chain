@@ -7,7 +7,8 @@ var role_privilege = {
 				name:'',
 				rid:''
 			},
-			checkedStr:''//被选中的权限树上的复选框的id的值
+			checkedStr:'',//被选中的权限树上的复选框的id的值
+			zTreePlugin:''
 		},
 		/**
 		 *存放操作 
@@ -43,7 +44,17 @@ var role_privilege = {
 						isRoot:true,
 						nodes:{}
 					},
-					checkable:true
+					checkable:true,
+					callback:{
+						change:function(){
+							if(role_privilege.opt.privilegeTree.isAllCheckedOnPrivilegeTree()){//全部选中
+								//设置全选复选框的状态为选中
+								$("#allchecked").attr("checked",true);
+							}else{
+								$("#allchecked").attr("checked",false);
+							}
+						}
+					}
 				},
 				loadPrivilegeTree:function(){
 					/**
@@ -51,13 +62,33 @@ var role_privilege = {
 					 *该回调函数是由服务器发的，并且在readyState的值为4，status的值为200的情况下触发的
 					 */
 					$.post("privilegeAction_showPrivilegeTree.action",null,function(data){
-						$("#privilegeTree").zTree(role_privilege.opt.privilegeTree.setting,data);
+						role_privilege.data.zTreePlugin=$("#privilegeTree").zTree(role_privilege.opt.privilegeTree.setting,data);
 						/**
 						 *设置显示权限树，隐藏loading 
 						 */
 						$("#loading").hide();
 						$("#privilegeTree").show();
+						//设置全选复选框初始化的状态值
+						if(role_privilege.opt.privilegeTree.isAllCheckedOnPrivilegeTree()){//全部选中
+							//设置全选复选框的状态为选中
+							$("#allchecked").attr("checked",true);
+						}else{
+							$("#allchecked").attr("checked",false);
+						}
+						//设置全选复选框为可用
+						$("#allchecked").attr("disabled","");
 					});
+				},
+				/**
+				 *判断复选框数上的复选框是否被全部选中 
+				 */
+				isAllCheckedOnPrivilegeTree:function(){
+					var array=role_privilege.data.zTreePlugin.getCheckedNodes(false);
+					if(array.length==0){//说明全部被选中
+						return true;
+					}else{//说明没有全部选中
+						return false;
+					}
 				}
 			}
 		},
@@ -92,6 +123,8 @@ var role_privilege = {
 							role_privilege.init.initData.call(this);
 							//动态显示角色名称
 							role_privilege.opt.roleOpt.showRoleName();
+							//设置全选复选框为不可用
+							$("#allchecked").attr("disabled","disabled");
 							/**
 							 *设置显示loading，隐藏权限树 
 							 */
@@ -100,6 +133,17 @@ var role_privilege = {
 							//加载权限树
 							role_privilege.opt.privilegeTree.loadPrivilegeTree();
 						});
+					}
+				});
+				/**
+				 *全选复选框的设置 
+				 */
+				$("#allchecked").unbind("change");
+				$("#allchecked").bind("change",function(){
+					if($(this).attr("checked")){//被选中
+						role_privilege.data.zTreePlugin.checkAllNodes(true);
+					}else{//未被选中
+						role_privilege.data.zTreePlugin.checkAllNodes(false);
 					}
 				});
 			}
