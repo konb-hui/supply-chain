@@ -42,11 +42,21 @@ var role_privilege = {
 					root:{
 						isRoot:true,
 						nodes:{}
-					}
+					},
+					checkable:true
 				},
 				loadPrivilegeTree:function(){
+					/**
+					 *第三个参数为回调函数 
+					 *该回调函数是由服务器发的，并且在readyState的值为4，status的值为200的情况下触发的
+					 */
 					$.post("privilegeAction_showPrivilegeTree.action",null,function(data){
 						$("#privilegeTree").zTree(role_privilege.opt.privilegeTree.setting,data);
+						/**
+						 *设置显示权限树，隐藏loading 
+						 */
+						$("#loading").hide();
+						$("#privilegeTree").show();
 					});
 				}
 			}
@@ -82,9 +92,14 @@ var role_privilege = {
 							role_privilege.init.initData.call(this);
 							//动态显示角色名称
 							role_privilege.opt.roleOpt.showRoleName();
+							/**
+							 *设置显示loading，隐藏权限树 
+							 */
+							$("#loading").show();
+							$("#privilegeTree").hide();
 							//加载权限树
 							role_privilege.opt.privilegeTree.loadPrivilegeTree();
-						})
+						});
 					}
 				});
 			}
