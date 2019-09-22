@@ -150,7 +150,6 @@ public class BaseDaoImpl<T> implements BaseDao<T>{
 		hql.append(stringBuffer.toString());
 		hql.append(")");
 		List<T> list = this.hibernateTemplate.find(hql.toString());
-		this.hibernateTemplate.deleteAll(list);
 		return new HashSet<T>(list);//从list到set的转化
 	}
 

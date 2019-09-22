@@ -89,6 +89,28 @@ var role_privilege = {
 					}else{//说明没有全部选中
 						return false;
 					}
+				},
+				/**
+				 *建立角色与权限之间的关系 
+				 */
+				savePrivilege:function(){
+					//得到被选中的权限
+					var checkedNodes = role_privilege.data.zTreePlugin.getCheckedNodes(true);
+					var checkedStr = "";
+					for(var i=0;i<checkedNodes.length;i++){
+						if(i==checkedNodes.length-1){
+							checkedStr = checkedStr + checkedNodes[i].id;
+						}else{
+							checkedStr = checkedStr + checkedNodes[i].id+",";
+						}
+					}
+					var parameter = {
+							rid:role_privilege.data.role.rid,
+							checkedStr:checkedStr
+					};
+					$.post("privilegeAction_savePrivilege.action",parameter,function(data){
+						alert("保存成功");
+					});
 				}
 			}
 		},
@@ -145,6 +167,13 @@ var role_privilege = {
 					}else{//未被选中
 						role_privilege.data.zTreePlugin.checkAllNodes(false);
 					}
+				});
+				/**
+				 *给保存按钮添加click事件 
+				 */
+				$("#savePrivilege").unbind("click");
+				$("#savePrivilege").bind("click",function(){
+					role_privilege.opt.privilegeTree.savePrivilege();
 				});
 			}
 		}
