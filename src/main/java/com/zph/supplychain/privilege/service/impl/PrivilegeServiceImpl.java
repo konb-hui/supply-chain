@@ -1,5 +1,7 @@
 package com.zph.supplychain.privilege.service.impl;
 
+import java.util.Collection;
+
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
@@ -21,6 +23,12 @@ public class PrivilegeServiceImpl extends BaseServiceImpl<Privilege> implements 
 	public BaseDao getbaseDao() {
 		// TODO Auto-generated method stub
 		return this.privilegeDao;
+	}
+
+
+	public Collection<Privilege> getPrivilegeByRoleId(Long rid) {
+		// TODO Auto-generated method stub
+		return this.privilegeDao.getPrivilegeByRoleId(rid);
 	}
 
 }

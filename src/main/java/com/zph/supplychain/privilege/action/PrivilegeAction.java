@@ -45,7 +45,7 @@ public class PrivilegeAction extends BaseAction<Privilege>{
 	}
 
 	public String showPrivilegeTree() {
-		Collection<Privilege> privileges = this.privilegeService.getEntries();
+		Collection<Privilege> privileges = this.privilegeService.getPrivilegeByRoleId(getRid());
 		ActionContext.getContext().getValueStack().push(privileges);
 		return SUCCESS;
 	}

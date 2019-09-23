@@ -61,7 +61,9 @@ var role_privilege = {
 					 *第三个参数为回调函数 
 					 *该回调函数是由服务器发的，并且在readyState的值为4，status的值为200的情况下触发的
 					 */
-					$.post("privilegeAction_showPrivilegeTree.action",null,function(data){
+					$.post("privilegeAction_showPrivilegeTree.action",{
+						rid:role_privilege.data.role.rid
+					},function(data){
 						role_privilege.data.zTreePlugin=$("#privilegeTree").zTree(role_privilege.opt.privilegeTree.setting,data);
 						/**
 						 *设置显示权限树，隐藏loading 
