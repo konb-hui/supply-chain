@@ -12,6 +12,13 @@ public class Role implements Serializable{
 	private Boolean isParent;//是否为父节点
 	private Set<User> users;
 	private Set<Privilege> privileges;
+	private Boolean checked;//设置是否被选中
+	public Boolean getChecked() {
+		return checked;
+	}
+	public void setChecked(Boolean checked) {
+		this.checked = checked;
+	}
 	public Set<Privilege> getPrivileges() {
 		return privileges;
 	}

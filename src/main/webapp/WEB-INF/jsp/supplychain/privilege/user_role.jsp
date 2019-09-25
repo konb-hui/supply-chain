@@ -1,9 +1,9 @@
 <%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
 <%@ include file="/WEB-INF/jsp/supplychain/common/common.jsp"%>
-<script language="javascript" src="${pageContext.request.contextPath}/js/role_privilege.js"></script>
+<script language="javascript" src="${pageContext.request.contextPath}/js/user_role.js"></script>
 <html>
 <head>
-    <title>角色列表</title>
+    <title>用户列表</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <script language="javascript" src="js/jquery-1.4.2.js"></script>
 	<script language="javascript" src="js/jquery-ztree-2.5.js"></script>
@@ -19,7 +19,7 @@
     <div id="Title_bar_Head"> 
         <div id="Title_Head"></div>
         <div id="Title"><!--页面标题-->
-            <img border="0" width="13" height="13" src="style/images/title_arrow.gif"/> 角色管理
+            <img border="0" width="13" height="13" src="style/images/title_arrow.gif"/> 用户管理
         </div>
         <div id="Title_End"></div>
     </div>
@@ -31,19 +31,19 @@
         <!-- 表头-->
         <thead>
             <tr align=center valign=middle id=TableTitle>
-                <td width="100">角色名</td>
+                <td width="100">用户名</td>
                 <td>相关操作</td>
             </tr>
         </thead>
         
         <!--显示数据列表-->
         <tbody id="TableData" class="dataContainer" datakey="userList">
-        	<s:iterator value="#roles">
+        	<s:iterator value="#users">
 	            <tr class="TableDetail1 template">
-	                <td><s:property value="name"/></td>
-	                <s:hidden name="rid"></s:hidden>
+	                <td><s:property value="username"/></td>
+	                <s:hidden name="uid"></s:hidden>
 	                <td align=center>
-						<a>设置权限</a>
+						<a>设置角色</a>
 	                </td>
 	            </tr>
             </s:iterator>
@@ -52,10 +52,10 @@
     
     <div class="ItemBlock_Title1" id="userTitle" style="display: none;"><!-- 信息说明 --><div class="ItemBlock_Title1">
         	<img border="0" width="4" height="7" src="style/blue/images/item_point.gif"/>
-        	<label id="roleImage"></label>
+        	<label id="userImage"></label>
         </div>
     <div class="ItemBlock_Title1" id="privilegeTitle" style="display: none;"><div class="ItemBlock_Title1">
-        	<img border="0" width="4" height="7" src="style/blue/images/item_point.gif" />选择权限</div> 
+        	<img border="0" width="4" height="7" src="style/blue/images/item_point.gif" />选择角色</div> 
         </div>
         
         <!-- 表单内容显示 -->
@@ -79,7 +79,7 @@
 							<!-- 显示权限树 -->
 							<td>
 								<img id="loading" alt="" src="images/loading.gif">
-								<ul id='privilegeTree' class="tree">
+								<ul id='roleTree' class="tree">
 							</td>
 						</tr>
 					</tbody>
@@ -88,7 +88,7 @@
         </div>
         <!-- 表单操作 -->
         <div id="InputDetailBar">
-            <image id="savePrivilege" src="style/images/save.png"/>
+            <image id="saveRole" src="style/images/save.png"/>
         </div>
 </div>
 

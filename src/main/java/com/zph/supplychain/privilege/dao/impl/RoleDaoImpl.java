@@ -1,6 +1,7 @@
 package com.zph.supplychain.privilege.dao.impl;
 
 import java.sql.SQLException;
+import java.util.Collection;
 
 import org.hibernate.HibernateException;
 import org.hibernate.Query;
@@ -26,6 +27,21 @@ public class RoleDaoImpl extends BaseDaoImpl<Role> implements RoleDao{
 			}
 			
 		});
+	}
+
+	public Collection<Role> getRoleByUid(Long uid) {
+		//加载所有的角色
+		Collection<Role> allRoles = this.hibernateTemplate.find("from Role");
+		//加载用户能够访问到的角色
+		Collection<Role> userRoles = this.hibernateTemplate.find("from Role r inner join fetch r.users u where u.uid=?",uid);
+		for (Role role : allRoles) {
+			for (Role role2 : userRoles) {
+				if(role.getRid().longValue()==role2.getRid().longValue()) {
+					role.setChecked(true);
+				}
+			}
+		}
+		return allRoles;
 	}
 
 }

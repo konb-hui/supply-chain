@@ -1,5 +1,7 @@
 package com.zph.supplychain.privilege.service.impl;
 
+import java.util.Collection;
+
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
@@ -25,6 +27,11 @@ public class RoleServiceImpl extends BaseServiceImpl<Role> implements RoleServic
 	public Role getRoleByName(String name) {
 		// TODO Auto-generated method stub
 		return this.roleDao.getRoleByName(name);
+	}
+
+	public Collection<Role> getRoleByUid(Long uid) {
+		// TODO Auto-generated method stub
+		return this.roleDao.getRoleByUid(uid);
 	}
 
 }
