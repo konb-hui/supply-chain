@@ -23,5 +23,9 @@
 	 	跳转
 	  -->
 	  <include file="com/zph/supplychain/struts/forward/struts-forward.xml"></include>
+	  <!-- 
+	  	登录
+	   -->
+	   <include file="com/zph/supplychain/struts/login/struts-login.xml"></include>
 </struts>
 	
