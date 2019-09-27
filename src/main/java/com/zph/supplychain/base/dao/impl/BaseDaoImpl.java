@@ -35,7 +35,7 @@ public class BaseDaoImpl<T> implements BaseDao<T>{
 	 * */
 	public BaseDaoImpl() {
 		/*
-		 * this代表之类
+		 * this代表子类
 		 * this.getClass().getGenericSuperclass()就是父类：BaseDaoImpl<T>泛型
 		 * */
 		ParameterizedType type = (ParameterizedType)this.getClass().getGenericSuperclass();

@@ -7,6 +7,10 @@
 	<package name="forward" namespace="/" extends="struts-default">
 		<action name="forwardAction_*" method="{1}" class="forwardAction">
 			<result name="role">WEB-INF/jsp/supplychain/basedata/role/role.jsp</result>
+			<result name="top">WEB-INF/jsp/supplychain/frame/top.jsp</result>
+			<result name="center">WEB-INF/jsp/supplychain/frame/center.jsp</result>
+			<result name="left">WEB-INF/jsp/supplychain/frame/left.jsp</result>
+			<result name="right">WEB-INF/jsp/supplychain/frame/right.jsp</result>
 		</action>
 	</package>
 </struts>

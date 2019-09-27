@@ -7,4 +7,5 @@ import com.zph.supplychain.domain.privilege.Privilege;
 
 public interface PrivilegeService extends BaseService<Privilege>{
 	public Collection<Privilege> getPrivilegeByRoleId(Long rid);
+	public Collection<Privilege> getMenuitemByUid(Long uid);
 }
