@@ -20,4 +20,16 @@ public class ForwardAction extends ActionSupport{
 	public String forward() {
 		return this.method;
 	}
+	public String top() {
+		return "top";
+	}
+	public String center() {
+		return "center";
+	}
+	public String left() {
+		return "left";
+	}
+	public String right() {
+		return "right";
+	}
 }

@@ -44,7 +44,7 @@ document.all("frmTitle").style.display=""
 <table width="100%" height="100%" border="0" cellpadding="0" cellspacing="0">
   <tr>
     <td width="171" id=frmTitle noWrap name="fmTitle" align="center" valign="top" bacolor="#0a5c8e">
-	<iframe name="left" height="100%" width="171" src="forwardAction_forward.action?method=left" border="0" frameborder="0" scrolling="auto">
+	<iframe name="left" height="100%" width="171" src="forwardAction_left.action" border="0" frameborder="0" scrolling="auto">
 	浏览器不支持嵌入式框架，或被配置为不显示嵌入式框架。</iframe>	</td>
     <td width="9" valign="middle"  bgcolor="#0a5c8e" onclick=switchSysBar()><SPAN class=navPoint 
 id=switchPoint title=关闭/打开左栏><img src="images/main_41.gif" name="img1" width=9 height=52 id=img1></SPAN></td>
@@ -61,7 +61,7 @@ id=switchPoint title=关闭/打开左栏><img src="images/main_41.gif" name="img
       <tr>
         <td><table width="100%" height="100%" cellpadding="0"  cellspacing="0" style="table-layout:fixed;">
           <tr>
-             <td style="padding:2px 5px;"><iframe name="right" height="100%" width="100%" src="forwardAction_forward.action?method=right" border="0" frameborder="0"> 浏览器不支持嵌入式框架，或被配置为不显示嵌入式框架。</iframe></td>
+             <td style="padding:2px 5px;"><iframe name="right" height="100%" width="100%" src="forwardAction_right.action" border="0" frameborder="0"> 浏览器不支持嵌入式框架，或被配置为不显示嵌入式框架。</iframe></td>
             <td width="3" style="width:3px; background:#0a5c8e; overflow:">&nbsp;</td>
           </tr>
         </table></td>

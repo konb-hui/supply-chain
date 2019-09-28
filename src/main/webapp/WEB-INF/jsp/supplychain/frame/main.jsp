@@ -8,8 +8,8 @@
 </head>
 
 <frameset rows="78,*" cols="*" framespacing="0" frameborder="no" border="0">
-  <frame src="forwardAction_forward.action?method=top" name="topFrame" scrolling="NO" noresize="noresize" id="topFrame" />
-  <frame src="forwardAction_forward.action?method=center" name="mainFrame" id="mainFrame" scrolling="No" />
+  <frame src="forwardAction_top.action" name="topFrame" scrolling="NO" noresize="noresize" id="topFrame" />
+  <frame src="forwardAction_center.action" name="mainFrame" id="mainFrame" scrolling="No" />
 </frameset>
 <noframes><body>
 </body>
