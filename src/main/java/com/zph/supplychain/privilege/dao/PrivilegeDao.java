@@ -8,4 +8,5 @@ import com.zph.supplychain.domain.privilege.Privilege;
 public interface PrivilegeDao extends BaseDao<Privilege>{
 	public Collection<Privilege> getPrivilegeByRoleId(Long id);
 	public Collection<Privilege> getMenuitemTreeByUid(Long uid);
+	public Collection<Privilege> getFunctionTreeByUid(Long uid);
 }

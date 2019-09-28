@@ -37,4 +37,10 @@ public class PrivilegeServiceImpl extends BaseServiceImpl<Privilege> implements 
 		return this.privilegeDao.getMenuitemTreeByUid(uid);
 	}
 
+
+	public Collection<Privilege> getFunctionByUid(Long uid) {
+		// TODO Auto-generated method stub
+		return this.privilegeDao.getFunctionTreeByUid(uid);
+	}
+
 }

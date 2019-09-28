@@ -40,4 +40,13 @@ public class PrivilegeDaoImpl extends BaseDaoImpl<Privilege> implements Privileg
 		return null;
 	}
 
+	public Collection<Privilege> getFunctionTreeByUid(Long uid) {
+		if(uid.longValue()==1) {//说明是管理员
+			return this.hibernateTemplate.find("from Privilege where type='1'");	
+		}else {//普通员工
+			this.hibernateTemplate.find("from Privilege p inner join fetch p.roles r inner join fetch r.users u where u.uid=? and p.type='2'",uid);
+		}
+		return null;
+	}
+
 }
