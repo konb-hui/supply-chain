@@ -10,6 +10,7 @@ import com.opensymphony.xwork2.ActionContext;
 import com.zph.supplychain.base.action.BaseAction;
 import com.zph.supplychain.basedata.service.DepartmentService;
 import com.zph.supplychain.domain.basedata.Department;
+import com.zph.supplychain.privilege.annotation.PrivilegeInfo;
 import com.zph.supplychain.query.PageResult;
 import com.zph.supplychain.query.basedata.DepartmentQuery;
 
@@ -21,6 +22,7 @@ public class DepartmentAction extends BaseAction<Department>{
 	private DepartmentService departmentService;
 	private DepartmentQuery baseQuery = new DepartmentQuery();
 
+	@PrivilegeInfo(name="部门查询")
 	public String showPageResult() {
 		baseQuery.setCurrentPage(this.getCurrentPage());
 		PageResult<Department> departments = this.departmentService.findPageResult(baseQuery);

@@ -27,5 +27,9 @@
 	  	登录
 	   -->
 	   <include file="com/zph/supplychain/struts/login/struts-login.xml"></include>
+	   <!-- 
+	   	拦截器
+	    -->
+	    <include file="com/zph/supplychain/struts/interceptor/struts-interceptor.xml"></include>
 </struts>
 	

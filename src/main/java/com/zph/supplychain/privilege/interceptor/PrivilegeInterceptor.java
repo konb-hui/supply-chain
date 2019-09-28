@@ -4,6 +4,7 @@ import java.util.Collection;
 
 import org.apache.struts2.ServletActionContext;
 
+import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionInvocation;
 import com.opensymphony.xwork2.interceptor.MethodFilterInterceptor;
 import com.zph.supplychain.domain.privilege.Privilege;
@@ -40,6 +41,7 @@ public class PrivilegeInterceptor extends MethodFilterInterceptor{
 			if(flag) {
 				return invocation.invoke();
 			}else {
+				ActionContext.getContext().getValueStack().push("您没有权限访问");
 				return "privilege_error";
 			}
 		}
