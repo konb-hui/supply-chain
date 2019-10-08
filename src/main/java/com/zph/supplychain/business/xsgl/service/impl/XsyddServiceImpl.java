@@ -8,6 +8,9 @@ import com.zph.supplychain.business.xsgl.service.XsyddService;
 import com.zph.supplychain.domain.business.xsgl.Xsyddzhib;
 import com.zph.supplychain.domain.business.xsgl.Xsyddzhub;
 import javax.annotation.Resource;
+
+import org.springframework.stereotype.Service;
+@Service("xsyddService")
 public class XsyddServiceImpl extends BaseBusinessServiceImpl<Xsyddzhub,Xsyddzhib> implements XsyddService{
 	@Resource(name="xsyddzhubDao")
 	private XsyddzhubDao xsyddzhubDao;

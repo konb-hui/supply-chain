@@ -62,13 +62,29 @@ public class BaseDaoImpl<T> implements BaseDao<T>{
 				//在map中封装的查询条件
 				Map<String, Object> keyValues = baseQuery.buildWhere();
 				for(Entry<String, Object> entry : keyValues.entrySet()) {
-					stringBuffer.append(" and " + entry.getKey() + "=:" + entry.getKey());
+					/**
+					 * 在一对多的情况下，例如Xsyddzhib
+					 *    entry.getKey()="xsyddzhub.xsyddzhubid"
+					 *    "where xsyddzhub.xsyddzhubid=:xsyddzhubid"
+					 */
+					if(entry.getKey().contains(".")){
+						stringBuffer.append("and "+entry.getKey()+"=:"+entry.getKey().split("\\.")[1]);
+					}else{
+						stringBuffer.append("and "+entry.getKey()+"=:"+entry.getKey());
+					}
 				}
 				//根据拼凑的hql语句产生一个Query对象
 				Query query = session.createQuery(stringBuffer.toString());
 				//给hql语句的参数赋值
 				for(Entry<String, Object> entry : keyValues.entrySet()) {
-					query.setParameter(entry.getKey(), entry.getValue());
+					if(entry.getKey().contains(".")){
+						/**
+						 * "where xsyddzhub.xsyddzhubid=:xsyddzhubid"的=:后面的赋值
+						 */
+						query.setParameter(entry.getKey().split("\\.")[1], entry.getValue());
+					}else{
+						query.setParameter(entry.getKey(), entry.getValue());
+					}
 				}
 				//设置当前页的第一行在集合中的位置
 				int firstResult = (baseQuery.getCurrentPage() - 1) * baseQuery.getPageSize();
@@ -164,13 +180,29 @@ public class BaseDaoImpl<T> implements BaseDao<T>{
 				Map<String, Object> keyValues = baseQuery.buildWhere();
 				//拼接where条件的过程
 				for(Entry<String, Object> entry : keyValues.entrySet()) {
-					stringBuffer.append("and " + entry.getKey() + "=:" + entry.getKey());
+					/**
+					 * 在一对多的情况下，例如Xsyddzhib
+					 *    entry.getKey()="xsyddzhub.xsyddzhubid"
+					 *    "where xsyddzhub.xsyddzhubid=:xsyddzhubid"
+					 */
+					if(entry.getKey().contains(".")){
+						stringBuffer.append("and "+entry.getKey()+"=:"+entry.getKey().split("\\.")[1]);
+					}else{
+						stringBuffer.append("and "+entry.getKey()+"=:"+entry.getKey());
+					}
 				}
 				System.out.println(stringBuffer.toString());
 				Query query = session.createQuery(stringBuffer.toString());
 				//把where条件中的参数传递值的过程
 				for(Entry<String, Object> entry : keyValues.entrySet()) {
-					query.setParameter(entry.getKey(), entry.getValue());
+					if(entry.getKey().contains(".")){
+						/**
+						 * "where xsyddzhub.xsyddzhubid=:xsyddzhubid"的=:后面的赋值
+						 */
+						query.setParameter(entry.getKey().split("\\.")[1], entry.getValue());
+					}else{
+						query.setParameter(entry.getKey(), entry.getValue());
+					}
 				}
 				Long count = (Long) query.uniqueResult();
 				return count.intValue();
