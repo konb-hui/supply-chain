@@ -9,16 +9,17 @@ import com.zph.supplychain.query.PageResult;
 
 public abstract class BaseBusinessServiceImpl<T, E extends Serializable> implements BaseBusinessService<T, E>{
 	
-	public abstract BaseDao getBaseDao();
+	public abstract BaseDao<T> getBaseDao_zhu();
+	public abstract BaseDao<E> getBaseDao_zhi();
 	
 	public PageResult<T> getEntries_zhu(BaseQuery baseQuery) {
 		// TODO Auto-generated method stub
-		return this.getBaseDao().findPageResult(baseQuery);
+		return this.getBaseDao_zhu().findPageResult(baseQuery);
 	}
 
 	public PageResult<E> getEntries_zi(BaseQuery baseQuery) {
 		// TODO Auto-generated method stub
-		return this.getBaseDao().findPageResult(baseQuery);
+		return this.getBaseDao_zhi().findPageResult(baseQuery);
 	}
 
 }
