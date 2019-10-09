@@ -31,5 +31,9 @@
 	   	拦截器
 	    -->
 	    <include file="com/zph/supplychain/struts/interceptor/struts-interceptor.xml"></include>
+	    <!-- 
+	         业务、销售管理
+	     -->
+	     <include file="com/zph/supplychain/struts/business/xsgl/struts-xsydd.xml"></include>
 </struts>
 	
